@@ -1,0 +1,18 @@
+name: Demo CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write build artifact
+        run: |
+          echo "demo-build artifact content generated on $(date -u +"%Y-%m-%dT%H:%M:%SZ")" > artifact.txt
+          cat artifact.txt
+      - name: Upload artifact as demo-build
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-build
+          path: artifact.txt
